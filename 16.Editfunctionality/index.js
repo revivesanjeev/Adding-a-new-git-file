@@ -1,3 +1,4 @@
+
 function handleFormSubmit(event) {
     event.preventDefault();
     
@@ -20,6 +21,11 @@ function handleFormSubmit(event) {
             list.remove(); // Remove list item from the screen
         }
     });
+
+
+
+
+
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Edit';
     editBtn.classList.add('edit-btn');
@@ -36,6 +42,12 @@ function handleFormSubmit(event) {
             document.getElementById('phone').value = userDetails.phone;
         }
     });
+
+
+
+
+
+    
     list.appendChild(listText);
     list.appendChild(deleteBtn);
     list.appendChild(editBtn); // Append edit button to the list item

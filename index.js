@@ -362,8 +362,42 @@
 
 
 
-var fun = a => a
+// var fun = a => a
 
-var a =10;
+// var a =10;
 
-console.log(fun(a))
+// console.log(fun(a))
+
+
+
+
+
+// function fun1(){
+
+//     console.log('a')
+    
+//     }
+    
+//     function fun2(){
+    
+//     console.log('b')
+    
+//     }
+    
+    
+    
+//     fun2()
+    
+//     fun1()
+
+
+
+
+
+
+
+
+
+
+
+
