@@ -114,7 +114,7 @@
 // console.log(this.val)
 
 // }
-
+// //TypeError: obj.fun is not a function
 // obj.fun()
 
 
@@ -200,6 +200,11 @@
 // console.log('inside b');
 
 // }
+
+
+
+
+
     
 // function a(){
 
@@ -401,3 +406,76 @@
 
 
 
+
+
+
+// function outerfunction() {
+//     console.log(a);
+//     var a = 10;
+//     innerfunction();
+//     function innerfunction() {
+//     console.log(a);
+//     console.log(this.a)
+//     console.log(window.a);
+// }}
+//     var a = 7;
+//     var b =3;
+//     outerfunction();
+
+
+
+
+
+
+
+
+
+// function outerfunction() {
+//     console.log(a);
+//     var c = 10;
+//     innerfunction();
+//     function innerfunction() {
+//     console.log(b);
+//     console.log(c);
+//     }
+//     }
+//     var a = 7;
+//     var b =3
+//     outerfunction();
+
+
+
+
+// function fun1(){
+
+//     console.log('a')
+    
+//     return () => {
+    
+//     console.log('b')
+    
+//     }}
+    
+    
+    
+//     fun1()
+
+
+
+
+
+function fun1(a){
+
+    const fun2 = (b) => {
+    
+    a = a + b;
+    
+    console.log(a)
+    
+    }}
+    
+    
+    
+    fun1(10)(30)
+    
+    

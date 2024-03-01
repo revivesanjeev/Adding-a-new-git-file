@@ -4,7 +4,7 @@
 
 //adding and creating element and shoeing it on screen
 const form=document.querySelector('form');
-const lists=document.querySelector('.lists');
+const lists=document.querySelector('.lists'); 
 //function to add a new lists
 function addListItem(expense,description,category){
     //creating the element and append it to the dom
@@ -13,6 +13,8 @@ function addListItem(expense,description,category){
     newLi.innerHTML=`${expense}-${description}-${category} <button class="delete-btn">Delete</button><button class="edit-btn">Edit</button>`;
     lists.appendChild(newLi);}
 //function to load user from local storage
+
+
 function loadUserDetails(){
     for(let i=0;i<localStorage.length;i++){
         const expe=localStorage.key(i);
