@@ -9,10 +9,13 @@ function handleFormSubmit(event) {
 
   axios
     .post(
-      "https://crudcrud.com/api/b71bff1a8e3d45c48507c1a2ca3686c8/userdetails",
+      "https://crudcrud.com/api/b7aac16c348d48469397bdbe291c7904/detail",
       userDetails
     )
-    .then((response) => displayUserOnScreen(response.data))
+    .then((response) => {
+      const createdUserDetails = response.data;
+      displayUserOnScreen(createdUserDetails);
+    })
     .catch((error) => console.log(error));
 
   // Clearing the input fields
@@ -25,61 +28,39 @@ function handleFormSubmit(event) {
 
 
 
-
-
-
+// Printing userDetails on screen using inner HTML
 function displayUserOnScreen(userDetails) {
-
-  const userItem = document.createElement("li");
-  userItem.appendChild(
-    document.createTextNode(
-      `${userDetails.username} - ${userDetails.email} - ${userDetails.phone}`
-    )
-  );
-
-
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.appendChild(document.createTextNode("Delete"));
-  userItem.appendChild(deleteBtn);
-deleteBtn.onclick = () => {
-  axios
-    .delete("link")
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.error("Error fetching data :", error);
-    });
-};
-
-
-
-const editBtn = document.createElement("button");
-editBtn.appendChild(document.createTextNode("Edit"));
-  userItem.appendChild(editBtn);
   const userList = document.querySelector("ul");
-  userList.appendChild(userItem);
+  const newLi = document.createElement("li");
+  newLi.innerHTML = `${userDetails.username}-${userDetails.email}-${userDetails.phone} <button class="delete-btn">Delete</button> <button class="edit-btn">Edit</button>`;
+  userList.appendChild(newLi);
+
+  // Adding event listeners for delete and edit buttons
+  const deleteBtn = newLi.querySelector(".delete-btn");
+  deleteBtn.addEventListener("click", function () {
+    axios
+      .delete(
+        `https://crudcrud.com/api/b7aac16c348d48469397bdbe291c7904/detail/${userDetails._id}`
+      )
+      .then(() => {
+        console.log("User detail deleted successfully");
+        newLi.remove();
+      })
+      .catch((error) => {
+        console.error("Error deleting user detail:", error);
+      });
+  });
 
 
 
-  
-  deleteBtn.addEventListener("click", function (event)  {
-  axios
-    .delete(
-"https://crudcrud.com/api/e56bd73358e0445a99f0c7436156f25d/todo/65dee93772109f03e8c7f3a7",
-      userDetails
-    )
-    .then((response) => displayUserOnScreen(response.data))
-    .catch((error) => console.log(error));
-    userList.removeChild(userItem);
-})
 
 
 
-  editBtn.addEventListener("click", function (event) {
-userList.removeChild(event.target.parentElement);
-    localStorage.removeItem(userDetails.email);
+
+
+  const editBtn = newLi.querySelector(".edit-btn");
+  editBtn.addEventListener("click", function () {
+    newLi.remove();
     document.getElementById("username").value = userDetails.username;
     document.getElementById("email").value = userDetails.email;
     document.getElementById("phone").value = userDetails.phone;
@@ -93,28 +74,22 @@ userList.removeChild(event.target.parentElement);
 
 
 
-
-
-
-
-
-
-
-window.addEventListener("DOMContentLoaded", () => {  
+window.addEventListener("DOMContentLoaded", () => {
   axios
-      .get(
-"https://crudcrud.com/api/b71bff1a8e3d45c48507c1a2ca3686c8/userdetails")
+    .get("https://crudcrud.com/api/b7aac16c348d48469397bdbe291c7904/detail")
     .then((response) => {
       console.log(response);
-      for (var i = 0; i < response.data.length; i++) {  displayUserOnScreen(response.data[i]);}})
-    .catch((error) => { console.log(error);});});
+      for (var i = 0; i < response.data.length; i++) {
+        displayUserOnScreen(response.data[i]);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 
 
 
 
-
-// Do not touch code below
 module.exports = handleFormSubmit;
-
-
