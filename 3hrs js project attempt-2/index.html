@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Keeper</title>
+    <style>
+        .centered-content {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="centered-content">
+    <h1>Password Keeper</h1>
+
+    <ul id="passwordcount"></ul>
+    <p>Search: <input id="search" type="text"></p>
+</div>
+
+<form id="password-form">
+    <p>Title: <input id="title" type="text"></p>
+    <p>Password: <input id="password" type="text"></p>
+    <button type="submit">Add</button>
+</form>
+
+<ul id="allpass">All Passwords</ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>

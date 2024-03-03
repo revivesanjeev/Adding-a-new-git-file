@@ -1,15 +1,15 @@
 function handleFormSubmit(event) {
   event.preventDefault();
-alert("Form submitted!");
+
   const orderdetails1 = {
     price: event.target.price.value,
-    dish: event.target.dish.value,
+    dish:  event.target.dish.value,
     table: event.target.table.options[event.target.table.selectedIndex].text,
   };
 
   axios
     .post(
-      "https://crudcrud.com/api/63ce611987df48cfa637d6cb4b1cae13/orderdetails",
+      "https://crudcrud.com/api/0793d74044e64b2cb51a24da957d36e2/orderdetails",
       orderdetails1
     )
     .then((response) => {
@@ -31,20 +31,19 @@ alert("Form submitted!");
 function displayUserOnScreen(orderdetails1) {
   const orderList = document.getElementById(`${orderdetails1.table}`);
   const newLi = document.createElement("li");
-  newLi.innerHTML = `${orderdetails1.price}-${orderdetails1.dish}-${orderdetails1.table} <button class="delete-btn">Delete Order</button> `;
+  newLi.innerHTML =`${orderdetails1.price}-${orderdetails1.dish}-${orderdetails1.table} <button class="delete-btn">Delete Order</button> `;
   orderList.appendChild(newLi);
 
   // Adding event listener for delete button
   const deleteBtn = newLi.querySelector(".delete-btn");
-  deleteBtn.addEventListener("click", function () {
+  deleteBtn.addEventListener("click", function(){
     axios
       .delete(
-        `https://crudcrud.com/api/63ce611987df48cfa637d6cb4b1cae13/orderdetails/${orderdetails1._id}`
+        `https://crudcrud.com/api/0793d74044e64b2cb51a24da957d36e2/orderdetails/${orderdetails1._id}`
       )
       .then(() => {
-         newLi.remove();
+        newLi.remove();
         alert("Order detail deleted successfully");
-       
       })
       .catch((error) => {
         alert("Error deleting order detail:", error);
@@ -56,10 +55,15 @@ function displayUserOnScreen(orderdetails1) {
 
 
 
+
+
+
+
+
 window.addEventListener("DOMContentLoaded", () => {
   axios
     .get(
-      "https://crudcrud.com/api/63ce611987df48cfa637d6cb4b1cae13/orderdetails"
+      "https://crudcrud.com/api/0793d74044e64b2cb51a24da957d36e2/orderdetails"
     )
     .then((response) => {
       console.log(response);
@@ -67,9 +71,9 @@ window.addEventListener("DOMContentLoaded", () => {
         displayUserOnScreen(response.data[i]);
       }
     })
+
     .catch((error) => {
       alert(error);
-    });
-});
+    });});
 
 
