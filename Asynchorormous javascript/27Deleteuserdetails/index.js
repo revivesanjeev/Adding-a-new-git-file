@@ -25,9 +25,6 @@ function handleFormSubmit(event) {
 }
 
 
-
-
-
 // Printing userDetails on screen using inner HTML
 function displayUserOnScreen(userDetails) {
   const userList = document.querySelector("ul");
@@ -53,11 +50,6 @@ function displayUserOnScreen(userDetails) {
 
 
 
-
-
-
-
-
   const editBtn = newLi.querySelector(".edit-btn");
   editBtn.addEventListener("click", function () {
     newLi.remove();
@@ -66,11 +58,6 @@ function displayUserOnScreen(userDetails) {
     document.getElementById("phone").value = userDetails.phone;
   });
 }
-
-
-
-
-
 
 
 
