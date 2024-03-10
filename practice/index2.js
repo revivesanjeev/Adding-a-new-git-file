@@ -49,10 +49,30 @@ function displayUserOnScreen(userdetails){
 
    // Adding event listener for edit  button
 
-   const Editbtn=newLi.querySelector(".edit-btn");
-   Editbtn.addEventListener("click",function(){
-    //whatever you want to perform
+   const editBtn=newLi.querySelector(".edit-btn");
+   editBtn.addEventListener("click",function(){
+  
+       document.getElementById("title").value=userdetails.title;
+       document.getElementById("password").value=userdetails.password;
+       updatePasswordCount(-1);
+       newLi.remove();
+       axios
+       .put(`link+id`,userdetails)
+       .then(()=>{
+        //update the password entry on the scren
+        userdetails.title=newTitle;
+        userdetails.password=newPassword;
+        newLi.innerHTML=`${newTitle}-${newPassword} <button class="delete-btn">Delete</button><button class="edit-btn">Edit</button>`;
+        alert("password updated successfully");
+       })
+ .catch(()=>{
+    alert("Error in updating password");
+ });
+});
+}
 
-    //populate the editing element to input feild back
-   })
+function updatePasswordCount(count){
+    const passwordCount=document.getElementById("passwordcount");
+    let currentCount=  parseInt(passwordCount.textContent.split(":"))
+
 }

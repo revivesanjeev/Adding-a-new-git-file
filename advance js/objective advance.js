@@ -8,6 +8,7 @@
 // //output:- YAVTECH and 3
 
 
+
 // QUESTION 2
 
 // printName("YAVTECH");
@@ -19,22 +20,25 @@
 
 
 
-// QUESTION 3
+
+// // QUESTION 3
 // console.log(printName);
 // console.log(a);//as variable is not intialised but it is with var so it will also print undefined
 // var a = 3;
-// var printName = (name) => {//it is function expression,it won't hoisted printname will be treated as variable and print undefined
+// //it is function expression,it won't hoisted printname will be treated as variable and print undefined
+// var printName = (name) => {
 // console.log(name)}
+//output-undefined undefined
 
 
 
-//fat arraow fn not hoisted video
 
+// //fat arraow fn not hoisted video
 // console.log(a);//print undefined
 // var a=()=>{
-//     return 100 // a will alloted memory but not intialised in 1st move(before reching any line memory gets alloted to the variable) ,a will be treat like variable 
-// }//TypeError: a is not a function
-
+//     return 100 // a will alloted memory but not intialised in 1st move(before reaching any line memory gets alloted to the variable) ,a will be treat like variable 
+// }
+//output-undefined
 
 
 
@@ -42,6 +46,8 @@
 // var a=()=>{
 //     return 100 }
 //     console.log(a());//after 2nd declaration it will treated like function
+//output-100
+
 
 
 // console.log(a());//TypeError: a is not a function
@@ -50,6 +56,12 @@
 // }
 // console.log(a());//print 100
 
+
+// console.log(a());//TypeError: a is not a function
+// var a=()=>{
+//     return 100;
+// }
+// console.log(a());//print 100
 
 
 
@@ -61,12 +73,15 @@
 // var a = 3;
 // var printName = function (name) {//printname is intialised with fn reference 
 // console.log(name)}
-// // console.log(printName);//it will print fn reference
+// console.log(printName);//it will print fn reference
+//output
+// undefined
+// undefined
+// [Function: printName]
 
 
 
 //Task-5
-
 //question-1
 // var a = 2;
 // var c = 2;
@@ -83,6 +98,9 @@
 // console.log(window.x)//undefined no any x in global
 // console.log(b());// c=4 in local scope
 // //output in chrome : 2 2 2 undefined 2 undefined 4
+
+
+
 
 
 //question-2
@@ -116,17 +134,17 @@
     
 
 //     //question-5
-//     function outerfunction() {
-//         console.log(a);//it will look into its brand new execution and get value undefined bcz in brand new execution a is aready present so , it will not look into the parent lexical scope
-//         var a = 10;
-//         innerfunction();
-//         function innerfunction() {
-//         console.log(a);
-//         console.log(window.a);
-//         console.log(this.a)}}
-//         var a = 7;
-//         var b =3;
-//         outerfunction();
+    // function outerfunction() {
+    //     console.log(a);//it will look into its brand new execution and get value undefined bcz in brand new execution a is aready present so , it will not look into the parent lexical scope
+    //     var a = 10;
+    //     innerfunction();
+    //     function innerfunction() {
+    //     console.log(a);
+    //     console.log(window.a);
+    //     console.log(this.a)}}
+    //     var a = 7;
+    //     var b =3;
+    //     outerfunction();
     
     
 
@@ -156,11 +174,16 @@
 // console.log(a);//as a is already in GEC so it will print 50 and a=30 in brand execution context of function in memory part
 
 
+
+
+
+
 //question-6
 // const a = 10;{
 // var a = 100;}
 // console.log(a)
 //Error -> var can come out of block scope // Error -> a connot be redeclared
+
 
 
 //Task-9
@@ -169,21 +192,21 @@
     // let a = 10;
     // function y(){console.log(a);}
     // y();}
-    // //when x() will be invoked then code definition will be in code box when in code box function y() will be called then it creates brand new execution context in that 
+    // //when x() will be invoked then code definition will be in code box when in code box function y() will be called then 
+    // // it creates brand new execution context in that it has lexical scope of parent so it has a=10
     // x();
-    
-
-    ///
+  
 
 
-//que-3
-    // function x(){
-    //     let a = 10;
-    //     function y(){ 
-    //     console.log(a);}  
-    //     return y;}
-    //     console.log( x());
-        //Reference of function y
+
+// //que-3
+//     function x(){
+//         let a = 10;
+//         function y(){ 
+//         console.log(a);}  
+//         return y;}
+//         console.log( x());
+        //output -Reference of function y
 
 
 
@@ -197,13 +220,24 @@
 //     console.log(z());
    //when fn y is returned and assigned into z ,when z will be invoked as a function z will look into its memory  a is present or not if not go into lexical scope i.e it's parent memory if found it will take it and print
 
+
+
+
+
+
 // //question 5
 //    function x(){
 //     let a = 10;
 //     function y(){
 //     console.log(a); }
 //     a= 50;//this is pointing to the same memory location where a has value 10
-//     return y;}
+//     return y;//before return y a will got updated a=50
+// }
+//     const z = x();
+//     console.log(z());
+    //output -50 undefined bcz 50 due to console and undefined due to function y returning nothing 
+
+
 
 
 
@@ -218,10 +252,10 @@
 //     fun()
 
 
-//this will print undefined not bcz of var obj but bcz of this keyword 
+//this will print undefined not bcz of var obj  bcz of this keyword 
 //if var obj is removed then also it print undefined
 // function fun(){
-//     console.log(this.val)}
+//     console.log(this.val)}//bcz this refer to window and in window there is no val 
 //     fun()
 
 
@@ -233,6 +267,7 @@
 //      console.log(this.val)}
 //      obj.fun()
      //fun is not method of obj so it will show error
+
 
 
      //obj.fun() can be access using this way
@@ -259,13 +294,18 @@
     //     function fun(){
     //     console.log(this.val)}
     //     fun.call(obj)
-//obj is passed as a argument and this keyword will refer to the obj
+//obj is passed as a argument and this keyword will refer to the obj bcz of call keyword it will be attach to the fun will attach to the obj
+
+
+
+
+
 
 
 // var obj = {
 //     val: 100}
-//     function fun(){
-//     console.log(this.val)}//print undefined 
+//     function fun(g){
+//     console.log(this.val)}//print undefined bcz obj is passed as argument but this will still refer to the window element or obj is not attach to fun
 //     fun(obj)
 
 
@@ -283,23 +323,15 @@
 
 
 //question 5
-
     // var obj = {
-
-    //     val: 100
-        
-    //     }
-        
+    //     val: 100}
     //     function fun(a){
-        
     //     console.log(this.val + a)//print 103
-        
-    //     }
-        
-    //     fun.call(obj, 3)//3 will assign to parameter a as argument
+    // }   fun.call(obj, 3)//3 will assign to parameter a as argument
 
     
     
+
     //question -6
     // var obj = {
     //     val: 100
@@ -309,15 +341,28 @@
     //     }
     //     fun.call(obj, 3, 4, 5)//print -112
 
+
+
 //apply method convert array  [3,4,5] in 3,4,5
+// var obj = {
+//   val: 100,
+// };
+// function fun(a, b, c) {
+//   console.log(this.val + a + b + c);
+// } //print 112
+// fun.apply(obj, [3, 4, 5]);
 
 
-//question-8 if apply replace with call
+
+
+
+// //question-8 
 // var obj = {
 //     val: 100}
 //     function fun(a, b , c){
 //     console.log(this.val + a + b + c)
 //     }  //100  3,4,5 undefined undefined concatenation will occur
+//     //in a [3,4,5] this will be assigned and b and c will print undefined
 //     fun.call(obj,[ 3, 4, 5])
 
 
@@ -327,42 +372,50 @@
 
 
 //Task-11 solve again
-
 // const name = (arr)=>{
 // let i=arr.length;
 //     for(let j=0;j<i;j++){
 //         console.log("Hello", `${arr[j]}`)}}
-
 // let fun = name(["Ram","Shyam"]);
-
 // fun()// Print Hello Ram
-
 // fun()//print Hello Shyam
+
 
 
 
 //task-12
 //ques-1
-// a()
-// console.log(b);
+// a();
+// b();
+// function a() {
+//   console.log("inside a");}
+// var b = function () {
+//   console.log("inside b");
+// };
+//error b is not a funtion: type error
+
+
+
+
+//question-3
+// function a() {
+//   console.log("inside a");}
+// var b = function abc() {
+//   console.log("inside b");};
+// a();
+// abc();
+//output: ReferenceError: abc is not defined
+
+
+
+
+
+// a()//print inside a
+// console.log(b);//print undefined
 // function a(){
-// console.log('inside a');
-// }
-// var b = function (){
-// console.log('inside b');
-// }
-
-
-
-// a()
-// console.log(b);
-// function a(){
-// console.log('inside a');
-// }
+// console.log('inside a');}
 // var b =  ()=>{
-// console.log('inside b');
-// }
-
+// console.log('inside b');}
 
 
 
@@ -370,34 +423,30 @@
 
 //question-5a
 // function fun1(){
-
 //     console.log('a')
-    
 //     return () => {
-    
 //     console.log('b')
-    
 //     }}//keep in mind that whenever you try to invoke func1() it will print only the thing which is inside console in func1 but if you try to console(func1) then it print whatever it return
     // console.log(fun1())
 
 
 
 
-    //question-5E
+    // question-5E
     // function fun1(a){
     // const fun2 = (b) => {
     // a = a + b;
     // console.log(a)}}
     // fun1(10)(30)
-//as func1 is not returning any fun then argument (30) where will go ,so it will show error
+//as func1 is not returning any fun then how it will be act as function argument (30) where will go ,so it will show error
 
 
 //Task-13
 //ques-2
 // var fun = function fun(){ return a} ;
-// console.log(fun(a))
+// console.log(fun(a));
 // var a =10;
-//print undefined 
+// print undefined 
 
 
 //ques-3
@@ -495,9 +544,14 @@
 
 // }
 
-console.log(a)
 
-console.log(b);
-var a =7;
-var b =11;
-console.log(b);
+
+
+
+
+// console.log(a)
+
+// console.log(b);
+// var a =7;
+// var b =11;
+// console.log(b);

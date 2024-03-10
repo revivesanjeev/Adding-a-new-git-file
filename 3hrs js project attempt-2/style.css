@@ -1,92 +1,344 @@
-/* General Styles */
+/* Body Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 10px;
-    padding: 10px;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  /* collapsing the border,width=0 means margin bottom and padding top would be same line */
+  padding: 0;
 }
 
-.centered-content {
-    text-align: center;
-    margin-top: 50px;
+/* Navbar Styles */
+.navbar {
+  /* The default value for the flex-direction property, when you use display: flex;, is row.  */
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+
+  /* the space is distributed evenly between the flex items, pushing the first item to the start edge and the last item to the end edge of the container. This creates equal space between the items. */
+  align-items: center;
+  /* In a flex container, there are two main axes: the main axis and the cross axis. The main axis is determined by the flex-direction property (which defaults to row), and the cross axis is perpendicular to it.
+By setting align-items: center;, you're aligning the flex items vertically along the cross-axis, meaning they will be centered vertically within the flex container. */
+
+  padding: 20px;
+  background-color: #df0909;
+  color: #fff;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
 }
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-nav li {
+  padding: 0 10px;
+}
+
+.navbar-nav li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar-nav li a:hover {
+  color: #ffd700;
+}
+
+/* Another Website Styles */
+.another-website {
+  text-align: right;
+  margin-right: 40px;
+  text-shadow: #666262;
+}
+
+/* General Styles */
 
 h1 {
-    color: #333;
+  color: #333;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    margin-bottom: 10px;
+  margin-bottom: 3px;
 }
 
-/* Form Styles */
-form {
-    margin-top: 20px;
+/* Password Reminder Styles */
+#password-reminder {
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin-bottom: 20px;
+  height: 20px;
+  animation: changeStyle 3s infinite alternate;
+}
+/* #password-reminder element over the duration of 3s, with each color change happening approximately every 0.6 seconds (since 3s is divided into 5 keyframes). */
+
+/* To define keyframes, you use the @keyframes at-rule followed by a name for the animation. Inside the @keyframes block, you define various percentages (or from/to) that represent different stages of the animation. Each percentage represents a point in time during the animation. */
+@keyframes changeStyle {
+  0% {
+    font-weight: normal;
+    color: #333;
+  }
+  25% {
+    font-weight: bold;
+    color: #ff0000;
+  }
+  50% {
+    font-weight: normal;
+    color: #00ff00;
+  }
+  75% {
+    font-weight: bold;
+    color: #0000ff;
+  }
+  100% {
+    font-weight: normal;
+    color: #333333;
+  }
 }
 
-input[type="text"] {
-    padding: 8px;
-    margin-bottom: 10px;
-    width: 200px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+/* user details  */
+
+.centered-content {
+  text-align: center;
+  position: relative;
+  /* top: 100px; */
+  /* when you set margin-top on an element, it creates space between the top edge of that element and the content above it, based on its containing block. If the containing block is the root element, then margin-top affects the spacing between the element and the top edge of the viewport (the browser window). If the containing block is its own parent element, then margin-top affects the spacing between the element and its parent's top edge. */
+  margin-top: 10px;
 }
 
-button {
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+#photo-container {
+  display: flex;
+  /* flex-item will be div and label by default it is row change to column */
+  flex-direction: column;
+  align-items: center;
 }
 
-button:hover {
-    background-color: #45a049;
+#photo-preview {
+  width: 150px;
+  height: 180px;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  background-size: cover;
+  margin-bottom: 10px; /* Add margin bottom to create space between image and file input */
 }
 
-/* Password Entry Styles */
-.delete-btn {
-    padding: 4px 8px;
-    margin-left: 10px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-.edit-btn {
-    padding: 4px 8px;
-    margin-left: 10px;
-    background-color: #36a8f4;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-.delete-btn:hover {
-    background-color: #d32f2f;
+#photo-input {
+  margin-top: 0px;
+  margin-left: 140px; /* choose the input box for image where to be placed */
 }
 
-.edit-btn:hover{
-      background-color: #2f4dd3;
+#photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Search Input Styles */
 #search {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 600px) {
-    input[type="text"] {
-        width: 100%;
-    }
+.search-wrapper {
+  position: absolute;
+  top: 300px;
+  left: 40px;
+}
+#passwordcount {
+  position: absolute;
+  top: 320px;
+  left: 40px;
+}
+
+/* Form Styles */
+form {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+input[type="text"],
+input[type="email"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #6ccf70;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #136d17;
+}
+
+/* Password Entry Styles */
+.delete-btn,
+.edit-btn {
+  padding: 4px 8px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #f84437;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #36a8f4;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #882525;
+}
+
+.edit-btn:hover {
+  background-color: #2f4dd3;
+}
+
+div li {
+  margin: 0;
+}
+div img {
+  height: 200px; /* Set your desired height */
+  width: auto; /* Adjust width automatically to maintain aspect ratio */
+}
+
+/* Subscription Styles */
+.subscription-text,
+#allpass {
+  margin-left: 40px;
+}
+
+/* Gallery Styles */
+.gallery-list {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+}
+
+.gallery-item {
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+}
+
+.membership-details {
+  text-align: center;
+}
+
+.membership-title {
+  margin-top: 3px;
+}
+
+.membership-title:hover,
+.membership-description:hover {
+  color: #ffd700;
+}
+
+.membership-description {
+  margin-left: 20px;
+  margin-top: 3px;
+}
+
+.gallery-item {
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.item-banner {
+  margin: 0 auto;
+}
+
+/* Apply the blink animation to the section title */
+.blink {
+  animation: blinkAnimation 1s infinite;
+}
+
+/* Define the blink animation */
+@keyframes blinkAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.img-cover {
+  transition: transform 0.5s ease;
+  border-radius: 30px;
+}
+
+.img-cover:hover {
+  transform: scale(0.9);
+}
+
+/* Footer Styles */
+.footer {
+  display: flex;
+  flex-direction: column;
+}
+.footer-link:hover {
+  text-decoration: underline;
+  color: #ffd700;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-brand,
+.footer-list,
+.footer-list:last-child {
+  flex: 1;
+  margin-right: 60px;
+  margin-left: 60px;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-bottom-list {
+  margin-top: 10px;
+}
+
+.footer-bottom-list li {
+  display: inline;
+  margin: 20 10px;
 }
