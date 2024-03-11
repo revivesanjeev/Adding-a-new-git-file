@@ -63,8 +63,10 @@ _blank: Load the URL into a new browsing context. This is usually a tab, but use
           class="rounded-image"
           type="file"
           id="photo-input"
-          accept="image/*"
-        />
+          accept=".jpeg, .jpg"
+          /> 
+          <!-- to select all type of image use accept="image/*" -->
+         
       </div>
       <ul>
         <li>
@@ -101,11 +103,12 @@ _blank: Load the URL into a new browsing context. This is usually a tab, but use
 
     <!-- search password  -->
     <div>
-      <ul id="passwordcount"></ul>
+      
       <div class="search-wrapper">
         Search:
         <input id="search" type="text" placeholder="Search your password" />
       </div>
+      <ul id="passwordcount"></ul>
     </div>
 
     <!--  -->
@@ -113,10 +116,10 @@ _blank: Load the URL into a new browsing context. This is usually a tab, but use
     <!-- password input feild -->
 
     <form id="password-form">
-      <p>Website: <input id="website" placeholder="Website" type="text" /></p>
-      <p>Title: <input id="title" placeholder="User Id" type="text" /></p>
+      <p>Website: <input id="website" placeholder="Website" type="text" required /></p>
+      <p>Title: <input id="title" placeholder="User Id" type="text"  required/></p>
       <p>
-        Password: <input id="password" placeholder="password" type="text" />
+        Password: <input id="password" placeholder="password" type="text"  required/>
       </p>
       <button type="submit">Add</button>
     </form>
@@ -304,7 +307,7 @@ _blank: Load the URL into a new browsing context. This is usually a tab, but use
                 class="input-field"
                 required
               />
-              <button type="button" id="input-btn" aria-label="send a message">
+              <button type="submit" id="input-btn" aria-label="send a message">
                 <span>Send</span>
                 <ion-icon
                   name="paper-plane-outline"
@@ -315,15 +318,18 @@ _blank: Load the URL into a new browsing context. This is usually a tab, but use
           </div>
         </div>
 
-        <!--footer bottom -->
+        <!--footer bottom  copyright  -->
 
         <div class="footer-bottom">
           <p class="copyright">
             Copyright 2023. Made by
-            <a href="https://github.com/revivesanjeev" class="copyright-link">
+            <a href="https://github.com/revivesanjeev"  target="_blank"  class="copyright-link">
               SANJEEV</a
             >
           </p>
+
+
+           <!-- t&c privacy policy -->
           <ul class="footer-bottom-list">
             <li>
               <a href="#" class="footer-bottom-link">Terms and Condition</a>
@@ -339,6 +345,6 @@ _blank: Load the URL into a new browsing context. This is usually a tab, but use
     <!--javascript and axios link  -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
-    <script src="index.js"></script>
+    <script src="index4.js"></script>
   </body>
 </html>

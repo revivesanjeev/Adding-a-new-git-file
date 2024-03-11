@@ -72,7 +72,7 @@ async function handleFormSubmit(event) {
   try {
     // Post data using axios
     const response = await axios.post(
-      "https://crudcrud.com/api/85cfeb5d2dbc4ccba555a89191d9047e1/password",
+      "https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e81/password",
       userdetails
     );
 
@@ -98,12 +98,18 @@ function displayUserOnScreen(userdetails) {
   newLi.innerHTML = `${userdetails.website}-${userdetails.title} - ${userdetails.password} <button class="delete-btn">Delete</button> <button class="edit-btn">Edit</button>`;
   passList.appendChild(newLi); // Append to list
 
+
+
+
+
+
+
   // Add event listener for delete button
   const deleteBtn = newLi.querySelector(".delete-btn");
   deleteBtn.addEventListener("click", async function () {
-    try {
+    try {//there is no need of response data to take or we don't any data from returned promises
       await axios.delete(
-        `https://crudcrud.com/api/85cfeb5d2dbc4ccba555a89191d9047e1/password/${userdetails._id}`
+        `https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e8/password/${userdetails._id}`
       );
       newLi.remove(); // Remove from screen
       updatePasswordCount(-1); // Decrement password count
@@ -113,12 +119,44 @@ function displayUserOnScreen(userdetails) {
     }
   });
 
+
+
+
+
+
   // Add event listener for edit button
   const editBtn = newLi.querySelector(".edit-btn");
-  editBtn.addEventListener("click", function () {
+  editBtn.addEventListener("click",  async function () {
+    document.getElementById("website").value = userdetails.website;
+    document.getElementById("title").value = userdetails.title;
+    document.getElementById("password").value = userdetails.password;
+    updatePasswordCount(-1); // Decrement password count by -1
+    newLi.remove(); //remove from screen
+
+    try {
+      await axios.put(
+        `https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e8/password/${userdetails._id}`,
+        updatedUserDetails
+      );
+
+      // Update the password entry on the screen
+      userdetails.website = newWebsite;
+      userdetails.title = newTitle;
+      userdetails.password = newPassword;
+      newLi.innerHTML = ` ${newWebsite}-${newTitle} - ${newPassword} <button class="delete-btn">Delete</button> <button class="edit-btn">Edit</button>`;
+      alert("Password updated successfully");
+    } catch (error) {
+
+        alert("Error in updating password");
+
+    }
+
     // Code for editing
   });
 }
+
+
+
 
 // Function to update password count
 function updatePasswordCount(count) {
@@ -126,7 +164,7 @@ function updatePasswordCount(count) {
   let currentCount =
     parseInt(passwordCount.textContent.split(":")[1].trim()) || 0;
   currentCount += count; // Increment count
-  passwordCount.innerHTML = `<li>Total Passwords: ${currentCount}</li>`; // Update password count
+  passwordCount.innerHTML = `<li  style="margin: 20px; >Total Passwords: ${currentCount}</li>`; // Update password count
 }
 
 // Function to load passwords on page load
@@ -134,12 +172,12 @@ async function loadPasswords() {
   try {
     // Fetch passwords
     const response = await axios.get(
-      "https://crudcrud.com/api/85cfeb5d2dbc4ccba555a89191d9047e1/password"
+      "https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e8/password"
     );
 
     // Display passwords
     const passwordCount = document.getElementById("passwordcount");
-    passwordCount.innerHTML = `<li>Total Passwords: ${response.data.length}</li>`; // Set initial password count
+    passwordCount.innerHTML = `<li style="margin: 20px;">Total Passwords: ${response.data.length}</li>`; // Set initial password count
     response.data.forEach((userdetails) => {
       displayUserOnScreen(userdetails);
     });

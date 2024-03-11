@@ -9,7 +9,7 @@ function writeAndErase(index, direction) {
   // Write the phrase if index is valid
   if (index >= 1 && index <= phrase.length) {
     passwordReminder.textContent = phrase.slice(0, index);
-    //          start (optional): The index at which to begin extraction. If omitted, it extracts from the start of the array. If negative, it specifies an offset from the end of the array (e.g., -2 indicates the second-to-last element).
+    //          start (optional): The index at which to begin extraction. If omitted, it extracts from the start of the array. If negative, it specifies an offset from the end of the array (e.g., -2 indicates the second-to-last element).as here start is set to 0 no negative index taken into consideration
 
     // end (optional): The index before which to end extraction. slice() extracts up to, but not including, the end index. If omitted, it extracts through the end of the array. If negative, it specifies an offset from the end of the array.
   }
@@ -31,12 +31,6 @@ function writeAndErase(index, direction) {
 // Start the process
 writeAndErase(1, 1);
 
-
-
-
-
-
-
 //storing user details to local storage and window onload function reversing it
 const photoInput = document.getElementById("photo-input");
 const photoPreview = document.getElementById("photo-preview");
@@ -45,27 +39,18 @@ const nameInput = document.getElementById("nameInput");
 const professionInput = document.getElementById("professionInput");
 const addressInput = document.getElementById("addressInput");
 
-// Function to store photo URL in local storage
-function storePhotoURL() {
-  const file = photoInput.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      localStorage.setItem("photoURL", e.target.result);
-    };
-    reader.readAsDataURL(file);
-  }
-}
-
 // Event listener for file input change
 photoInput.addEventListener("change", function () {
-  storePhotoURL();
-  const file = this.files[0];
+  const file = this.files[0]; //files is a array and at the 0th index we selecting the file
   if (file) {
     const reader = new FileReader(); // Create a new FileReader object
+    //  In JavaScript, the FileReader is an API provided by the browser to read the contents of files asynchronously.
+    //  When you create a new instance of FileReader using the new keyword, it creates a new object that provides methods and properties for reading files.
     reader.onload = function (e) {
-      // Define a function to execute when file reading is completed
-      photoPreview.style.backgroundImage = `url(${e.target.result})`; // Set the background image of photoPreview to the read file
+      // Set the background image of photoPreview to the read file
+      photoPreview.style.backgroundImage = `url(${reader.result})`;
+      // Store the photo URL in local storage
+      localStorage.setItem("photoURL", reader.result);
     };
     reader.readAsDataURL(file); // Read the file as a data URL
   } else {
@@ -100,6 +85,23 @@ window.addEventListener("load", () => {
 
 
 
+//search filter funtionality
+document.getElementById("search").addEventListener("keyup", function (event) {
+  //searchTerm will trim the all targeted value and convert it to lowercase
+  const searchTerm = event.target.value.trim().toLowerCase();
+  //listItems selecting all the li-element of id-allpass 
+  const listItems = document.querySelectorAll("#allpass li");
+  //run a for each loop if get display else none
+  listItems.forEach((item) => {
+    const titleText = item.textContent.trim().toLowerCase();
+    if (titleText.includes(searchTerm)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+});
+
 
 
 
@@ -120,7 +122,7 @@ function handleFormSubmit(event) {
   //post the data using axios on crud crud
   axios
     .post(
-      "https://crudcrud.com/api/5f2d2917ba6f4e71b80725a8677bfffc1/password",
+      "https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e8/password",
       userdetails
     )
     .then((response) => {
@@ -152,7 +154,7 @@ function displayUserOnScreen(userdetails) {
   deleteBtn.addEventListener("click", function () {
     axios
       .delete(
-        `https://crudcrud.com/api/5f2d2917ba6f4e71b80725a8677bfffc1/password/${userdetails._id}` //delete from cloud using specific id
+        `https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e8/password/${userdetails._id}` //delete from cloud using specific id
       )
       .then(() => {
         newLi.remove(); //remove from screen
@@ -175,7 +177,7 @@ function displayUserOnScreen(userdetails) {
 
     axios
       .put(
-        `https://crudcrud.com/api/5f2d2917ba6f4e71b80725a8677bfffc1/password/${userdetails._id}`,
+        `https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e8/password/${userdetails._id}`,
         updatedUserDetails
       )
       .then(() => {
@@ -201,17 +203,17 @@ function updatePasswordCount(count) {
   let currentCount =
     parseInt(passwordCount.textContent.split(":")[1].trim()) || 0;
   currentCount += count; //increment the count
-  passwordCount.innerHTML = `<li style="margin: 40px;">Total Passwords: ${currentCount}</li>`; // Update password count and insert element
+  passwordCount.innerHTML = `<li style="margin: 20px;">Total Passwords: ${currentCount}</li>`; // Update password count and insert element
 }
 
 // Function to load passwords on page load
 window.addEventListener("DOMContentLoaded", () => {
   axios
-    .get("https://crudcrud.com/api/5f2d2917ba6f4e71b80725a8677bfffc1/password")
+    .get("https://crudcrud.com/api/d3da01ec65184a8286590e4a53b234e8/password")
 
     .then((response) => {
       const passwordCount = document.getElementById("passwordcount");
-      passwordCount.innerHTML = `<li>Total Passwords: ${response.data.length}</li>`; // Set initial passwordcount
+      passwordCount.innerHTML = `<li style="margin: 20px;">Total Passwords: ${response.data.length}</li>`; // Set initial passwordcount
       //using foreach loop display all data on screen that is already in backend/cloud
       response.data.forEach((userdetails) => {
         displayUserOnScreen(userdetails);
@@ -229,19 +231,3 @@ window.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", handleFormSubmit);
 });
 
-//filter funtionality on the basis of title
-document.getElementById("search").addEventListener("keyup", function (event) {
-  //searchTerm will trim the all targeted value and convert it to lowercase
-  const searchTerm = event.target.value.trim().toLowerCase();
-  //listItems selecting all the li-element of id-allpass
-  const listItems = document.querySelectorAll("#allpass li");
-  //run a for each loop if get display else none
-  listItems.forEach((item) => {
-    const titleText = item.textContent.trim().toLowerCase();
-    if (titleText.includes(searchTerm)) {
-      item.style.display = "flex";
-    } else {
-      item.style.display = "none";
-    }
-  });
-});
