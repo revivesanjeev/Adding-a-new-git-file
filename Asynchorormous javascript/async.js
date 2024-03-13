@@ -278,3 +278,62 @@
 //         }})
 //         .catch((error)=>{console.log(error)})
 // })
+
+
+
+
+
+
+//objective 
+
+// console.log("start");
+
+// const fn = () =>
+//   new Promise((resolve, reject) => {// keep in mind that promises is inside a arrow fn returning a promises 
+//     console.log(1);
+
+//     resolve("success");
+//   });
+
+// console.log("middle");
+
+// fn().then((res) => {
+//   console.log(res);
+// });
+
+// console.log("end");
+
+
+
+
+//  var divideby100= number  => number/100;// 
+//  console.log(divideby100(1800));
+
+
+// const obj = {
+//     name: 'John',
+//     greetNormal: function() {
+//         console.log('Hello, ' + this.name); // Refers to obj.name
+//     },
+//     greetArrow: () => {
+//         console.log('Hello, ' + this.name); // Refers to the global object (or undefined in strict mode), not obj.name
+//     }
+// };
+
+// obj.greetNormal(); // Output: Hello, John
+// obj.greetArrow(); // Output: Hello, undefined (or Hello, [global object] in non-strict mode)
+var obj = {
+  age: "25",
+
+  findageArrowFn: () => {
+    console.log(this.age);
+  },
+
+  findAgeNormalFn: function () {
+    console.log(this.age);
+  },
+};
+
+obj.findageArrowFn();
+
+obj.findAgeNormalFn();
